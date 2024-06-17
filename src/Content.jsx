@@ -17,8 +17,11 @@ export function Content() {
 
   return (
     <main>
-      <h1>Welcome to React!</h1>
-      <RentalsIndex rentals={rentals} />
+      <h1>Welcome to AirBnB!</
+      h2>
+      <RentalsIndex rentals.id={rentals} />
+
+
     </main>
   );
 }
