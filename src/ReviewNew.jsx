@@ -1,4 +1,5 @@
 export function ReviewNew(props) {
+  console.log(props.reservation.images[0].url);
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
@@ -8,6 +9,7 @@ export function ReviewNew(props) {
   return (
     <div>
       <h1>New Review</h1>
+      <img src={props.reservation.images[0].url} alt="something something" />
       <form onSubmit={handleSubmit}>
         <div>
           reservation_id: <input name="reservation_id" type="text" />

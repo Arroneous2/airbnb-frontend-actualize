@@ -10,6 +10,7 @@ import { ReviewNew } from "./ReviewNew";
 export function Content() {
   const [rentals, setRentals] = useState([]);
   const [reservations, setReservations] = useState([]);
+  const [currentReservation, setCurrentReservation] = useState({});
   const [isReservationCreateVisible, setReservationCreateVisible] = useState(false);
   const [isReviewCreateVisible, setReviewCreateVisible] = useState(false);
   const [reviews, setReviews] = useState([]);
@@ -56,8 +57,9 @@ export function Content() {
     setReservationCreateVisible(false);
   };
 
-  const handleShowCreateReview = () => {
+  const handleShowCreateReview = (reservation) => {
     setReviewCreateVisible(true);
+    setCurrentReservation(reservation);
   };
 
   const handleCloseCreateReview = () => {
@@ -81,10 +83,10 @@ export function Content() {
         />
       </Routes>
       <Modal show={isReservationCreateVisible} onClose={handleCloseCreateReservation}>
-        <ReservationNew onShowCreateReservation={handleCreateReservation} />
+        <ReservationNew onCreateReservation={handleCreateReservation} />
       </Modal>
       <Modal show={isReviewCreateVisible} onClose={handleCloseCreateReview}>
-        <ReviewNew onShowCreateReview={handleCreateReview} />
+        <ReviewNew onCreateReview={handleCreateReview} reservation={currentReservation} />
       </Modal>
     </main>
   );
