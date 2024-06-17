@@ -5,12 +5,14 @@ import { ReservationsIndex } from "./ReservationsIndex";
 import { Route, Routes } from "react-router-dom";
 import { Modal } from "./Modal";
 import { ReservationNew } from "./ReservationNew";
+import { ReviewNew } from "./ReviewNew";
 
 export function Content() {
   const [rentals, setRentals] = useState([]);
   const [reservations, setReservations] = useState([]);
-  const [currentReservation, setReservation] = useState({});
   const [isReservationCreateVisible, setReservationCreateVisible] = useState(false);
+  const [isReviewCreateVisible, setReviewCreateVisible] = useState(false);
+  const [reviews, setReviews] = useState([]);
 
   const handleRentals = () => {
     console.log("handleRentals");
@@ -37,12 +39,29 @@ export function Content() {
     });
   };
 
+  const handleCreateReview = (params, successCallback) => {
+    console.log("handleCreateReview", params);
+    axios.post("http://localhost:3000/reviews.json", params).then((response) => {
+      setReviews([...reviews, response.data]);
+      successCallback();
+      handleCloseCreateReview();
+    });
+  };
+
   const handleShowCreateReservation = () => {
     setReservationCreateVisible(true);
   };
 
   const handleCloseCreateReservation = () => {
     setReservationCreateVisible(false);
+  };
+
+  const handleShowCreateReview = () => {
+    setReviewCreateVisible(true);
+  };
+
+  const handleCloseCreateReview = () => {
+    setReviewCreateVisible(false);
   };
 
   useEffect(handleRentals, []);
@@ -52,7 +71,10 @@ export function Content() {
     <main>
       <h1>Welcome to React!</h1>
       <Routes>
-        <Route path="/reservations" element={<ReservationsIndex reservations={reservations} />} />
+        <Route
+          path="/reservations"
+          element={<ReservationsIndex reservations={reservations} onShowCreateReview={handleShowCreateReview} />}
+        />
         <Route
           path="/rentals"
           element={<RentalsIndex rentals={rentals} onShowCreateReservation={handleShowCreateReservation} />}
@@ -60,6 +82,9 @@ export function Content() {
       </Routes>
       <Modal show={isReservationCreateVisible} onClose={handleCloseCreateReservation}>
         <ReservationNew onShowCreateReservation={handleCreateReservation} />
+      </Modal>
+      <Modal show={isReviewCreateVisible} onClose={handleCloseCreateReview}>
+        <ReviewNew onShowCreateReview={handleCreateReview} />
       </Modal>
     </main>
   );
