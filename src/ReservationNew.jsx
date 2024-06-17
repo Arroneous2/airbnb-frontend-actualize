@@ -2,7 +2,7 @@ export function ReservationNew(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
-    props.onShowCreateReservation(params, () => event.target.reset());
+    props.onCreateReservation(params, () => event.target.reset());
   };
 
   return (
