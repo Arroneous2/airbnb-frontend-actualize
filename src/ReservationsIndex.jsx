@@ -8,7 +8,6 @@ export function ReservationsIndex(props) {
           <p>Total: {reservation.total}</p>
           <p>Start Date: {reservation.start_date}</p>
           <p>End Date: {reservation.end_date}</p>
-          <button onClick={() => props.onShowCreateReservation()}>More info</button>
         </div>
       ))}
     </div>

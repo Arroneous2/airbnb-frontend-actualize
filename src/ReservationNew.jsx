@@ -21,7 +21,7 @@ export function ReservationNew(props) {
         <div>
           end_date: <input name="end_date" type="date" />
         </div>
-        <button type="submit">Create photo</button>
+        <button type="submit">Create Reservation</button>
       </form>
     </div>
   );

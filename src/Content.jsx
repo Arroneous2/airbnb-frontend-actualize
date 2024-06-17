@@ -52,13 +52,11 @@ export function Content() {
     <main>
       <h1>Welcome to React!</h1>
       <Routes>
+        <Route path="/reservations" element={<ReservationsIndex reservations={reservations} />} />
         <Route
-          path="/reservations"
-          element={
-            <ReservationsIndex reservations={reservations} onShowCreateReservation={handleShowCreateReservation} />
-          }
+          path="/rentals"
+          element={<RentalsIndex rentals={rentals} onShowCreateReservation={handleShowCreateReservation} />}
         />
-        <Route path="/rentals" element={<RentalsIndex rentals={rentals} />} />
       </Routes>
       <Modal show={isReservationCreateVisible} onClose={handleCloseCreateReservation}>
         <ReservationNew onShowCreateReservation={handleCreateReservation} />

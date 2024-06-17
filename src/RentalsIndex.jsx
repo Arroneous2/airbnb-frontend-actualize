@@ -16,6 +16,7 @@ export function RentalsIndex(props) {
           <p>total_occupancy: {rental.total_occupancy}</p>
           <p>total_bed_rentals: {rental.total_bed_rentals}</p>
           <p>total_bathrooms: {rental.total_bathrooms}</p>
+          <button onClick={() => props.onShowCreateReservation()}>Create Reservation</button>
         </div>
       ))}
     </div>
